@@ -26,6 +26,7 @@ export {
 
 export default {
   install: (app: App, options: Options) => {
+    console.log("install")
     options && setState(options);
     loadGApi.then(() => {
       if (options.clientId) {
@@ -35,6 +36,7 @@ export default {
           callback: options.callback,
           ...options.idConfiguration,
         };
+        console.log("install: ", idConfiguration)
         window.google.accounts.id.initialize(idConfiguration);
         options.prompt && window.google.accounts.id.prompt();
       }
