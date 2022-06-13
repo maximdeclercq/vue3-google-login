@@ -34,6 +34,7 @@ export const decodeCredential: types.DecodeCredential = (
 };
 
 export const loadGApi = new Promise<types.Google>((resolve) => {
+  console.log("loadGApi")
   if (!libraryState.apiLoadIntitited) {
     const script = document.createElement("script");
     libraryState.apiLoadIntitited = true;
@@ -87,6 +88,7 @@ export const renderLoginButton = (
  * @param action A function to execute some actions only after google Client Library is loaded
  */
 export const googleSdkLoaded: types.GoogleSdkLoaded = (action) => {
+  console.log("googleSdkLoaded")
   if (!libraryState.apiLoadIntitited) {
     loadGApi.then((google) => {
       action(google);
@@ -224,6 +226,7 @@ const handlePromptError = (options: types.PromptErrorOptions) => {
 export const googleOneTap: types.GoogleOneTap = (
   options?: types.OneTapOptions
 ): Promise<callbackTypes.CredentialPopupResponse> => {
+  console.log("googleOneTap")
   !options && (options = {});
   if (!options.clientId && !state.clientId) {
     throw new Error("clientId is required");
